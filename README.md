@@ -80,7 +80,7 @@ $ flutter run --no-sound-null-safetyv
 
 ```
 
-## Android Studio Emulator
+## Run with Emulator
 
 ![alt text](./doc/ca-flutter-demo.gif)
 
