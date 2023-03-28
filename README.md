@@ -18,7 +18,8 @@ https://www.youtube.com/watch?v=03zuAxPjVDI
 - [x] http / dio
 - [ ] Unit Test [TODO]
 - [ ] Offline first [TODO]
-- [ ] Authentication [TODO]
+- [x] Authentication
+- [x] Firebase DB
 
 ## Flutter
 
@@ -67,12 +68,23 @@ $ flutter pub add simple_form_builder
 # json to form
 $ flutter pub add json_to_form
 
+# firebase
+$ flutter pub add firebase_core
+$ flutter pub add firebase_auth
+
+# flutter build
+$ flutter build apk
+
+# flutter clean
+$ flutter clean
+
 # run flutter
 $ cd caflutterdemo
 $ flutter run
+$ flutter run <DART_FILE>
 
-# or with --no-sound-null-safetyv
-$ flutter run --no-sound-null-safetyv
+# or with --no-sound-null-safety
+$ flutter run --no-sound-null-safety
 
 # choose chrome/edge
 
@@ -85,6 +97,12 @@ $ flutter run --no-sound-null-safetyv
 ![alt text](./doc/ca-flutter-demo.gif)
 
 ## Debug (F5)
+
+## Setup for firebase
+
+https://www.youtube.com/watch?v=aKgEEnVhU1I
+
+https://www.youtube.com/watch?v=GvIoBgmNgQw
 
 ## Getting Started
 

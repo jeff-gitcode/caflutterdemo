@@ -2,7 +2,10 @@ import 'package:caflutterdemo/domain/user_entity.dart';
 import 'package:caflutterdemo/infrastructure/db/user_provider.dart';
 import 'package:caflutterdemo/ui/cubit/user_cubit.dart';
 import 'package:caflutterdemo/ui/pages/home.dart';
+import 'package:caflutterdemo/ui/pages/auth_page.dart';
+import 'package:caflutterdemo/ui/pages/login.dart';
 import 'package:caflutterdemo/ui/pages/user_card.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -29,6 +32,9 @@ Future<void> init() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   await init();
 
   runApp(const MyApp());
@@ -40,11 +46,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CA Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomeScreen(),
-    );
+        title: 'CA Flutter Demo',
+        // debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        // home: const HomeScreen(),
+        home: AuthPage());
   }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "345183634297",
+    "project_id": "caflutterdemo",
+    "storage_bucket": "caflutterdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345183634297:android:9b756f41154cf2af6e65a8",
+        "android_client_info": {
+          "package_name": "com.example.caflutterdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345183634297-m1g5c5aqt7pbu0c9dm52nc9jeog35klg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOMVh5j9vuKDT9g4xorJCOCOYV2hxoZyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345183634297-m1g5c5aqt7pbu0c9dm52nc9jeog35klg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
