@@ -100,6 +100,10 @@ $ flutter run --no-sound-null-safety
 
 ## Setup for firebase
 
+default login email: jefftest@fluttertest.com, password: 12345678
+
+![alt text](./doc/firebase.jpg)
+
 https://www.youtube.com/watch?v=aKgEEnVhU1I
 
 https://www.youtube.com/watch?v=GvIoBgmNgQw

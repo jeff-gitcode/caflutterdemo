@@ -21,7 +21,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firebase Authentication'),
+        title: Text('CA Flutter Demo'),
       ),
       body: FutureBuilder(
         future: _initializeFirebase(),

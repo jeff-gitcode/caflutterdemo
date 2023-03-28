@@ -21,6 +21,13 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            // Image.asset(
+            //   '../../../assets/images/smile.jpg',
+            //   fit: BoxFit.fitWidth,
+            //   width: 200,
+            //   height: 200,
+            //   color: Colors.white,
+            // ),
             Text('Login', style: Theme.of(context).textTheme.headline4),
             TextFormField(
               controller: emailText,

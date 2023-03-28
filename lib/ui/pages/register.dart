@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 controller: nameText,
                 decoration: InputDecoration(
                   hintText: 'Name',
-                  prefixIcon: Icon(Icons.abc, color: Colors.blue),
+                  prefixIcon: Icon(Icons.person, color: Colors.blue),
                 ),
               ),
               TextFormField(
