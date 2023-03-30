@@ -8,7 +8,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit({required this.authUseCase}) : super(AuthInitial());
 
-  void login({required String email, required String password}) async {
+  Future<void> login({required String email, required String password}) async {
     try {
       if (state is AuthLoadingState) return;
 
@@ -27,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void register(
+  Future<void> register(
       {required String name,
       required String email,
       required String password}) async {

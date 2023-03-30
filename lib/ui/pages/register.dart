@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
+import 'auth_page.dart';
 import 'home.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -77,18 +78,18 @@ class _RegisterPageState extends State<RegisterPage> {
                               Expanded(
                                   child: ElevatedButton(
                                       onPressed: () async {
-                                        authCubit.register(
+                                        await authCubit.register(
                                             name: nameText.text,
                                             email: emailText.text,
                                             password: passwordText.text);
 
-                                        // if (user != null) {
-                                        //   Navigator.push(
-                                        //       context,
-                                        //       MaterialPageRoute(
-                                        //           builder: (context) =>
-                                        //               AuthPage()));
-                                        // }
+                                        if (state.user != null) {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      AuthPage()));
+                                        }
                                       },
                                       child: const Text('Register',
                                           style:

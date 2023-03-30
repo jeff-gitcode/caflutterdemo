@@ -30,8 +30,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => Client());
   sl.registerLazySingleton(() => UserProvider(httpClient: sl()));
 
-  sl.registerLazySingleton<IAuthRepository>(() => Authentication());
-  // () => Authentication(auth: FirebaseAuth.instance));
+  sl.registerLazySingleton<IAuthRepository>(
+      () => Authentication(auth: FirebaseAuth.instance));
   sl.registerLazySingleton<IUserRepository>(
       () => UserRepository(userProvider: sl()));
 

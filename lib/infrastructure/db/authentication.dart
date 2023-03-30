@@ -6,12 +6,9 @@ import 'package:flutter/material.dart';
 import '../../application/interface/spi/iauth_repository.dart';
 
 class Authentication implements IAuthRepository {
-  // final FirebaseAuth auth;
+  final FirebaseAuth auth;
 
-  // Authentication({required this.auth}) {
-  Authentication() {
-    print("init auth");
-  }
+  Authentication({required this.auth});
 
   @override
   Future<User?> register({
@@ -19,7 +16,7 @@ class Authentication implements IAuthRepository {
     required String email,
     required String password,
   }) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
+    // FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
@@ -50,7 +47,7 @@ class Authentication implements IAuthRepository {
     required String email,
     required String password,
   }) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
+    // FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
 
     try {
@@ -72,7 +69,7 @@ class Authentication implements IAuthRepository {
 
   @override
   Future<User?> refreshUser(User user) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
+    // FirebaseAuth auth = FirebaseAuth.instance;
 
     await user.reload();
     User? refreshedUser = auth.currentUser;

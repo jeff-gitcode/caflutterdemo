@@ -2,7 +2,9 @@ import 'package:equatable/equatable.dart' show Equatable;
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthState extends Equatable {
-  const AuthState();
+  final User? user;
+
+  const AuthState({this.user = null});
 
   @override
   List<Object> get props => [];
