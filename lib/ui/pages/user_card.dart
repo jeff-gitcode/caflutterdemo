@@ -9,7 +9,7 @@ class UserCard extends StatelessWidget {
   final UserCubit userCubit;
   final UserEntity user;
 
-  const UserCard({required this.user, required this.userCubit});
+  const UserCard({super.key, required this.user, required this.userCubit});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class UserCard extends StatelessWidget {
             ),
             Text(
               user.name,
-              style: TextStyle(fontWeight: FontWeight.w500),
+              style: const TextStyle(fontWeight: FontWeight.w500),
             ),
             Text(
               user.email,

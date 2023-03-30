@@ -1,8 +1,6 @@
 import 'package:caflutterdemo/domain/user_entity.dart';
 import 'package:caflutterdemo/ui/pages/add_user.dart';
-import 'package:caflutterdemo/ui/pages/user_card.dart';
 import 'package:caflutterdemo/ui/pages/user_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

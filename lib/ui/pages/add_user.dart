@@ -1,16 +1,11 @@
 import 'dart:convert';
 
 import 'package:caflutterdemo/domain/user_entity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:json_to_form/json_schema.dart';
-import 'package:json_to_form/json_to_form.dart';
-import 'package:simple_form_builder/formbuilder.dart';
-import 'package:simple_form_builder/global/checklistModel.dart';
 
 import '../cubit/user_cubit.dart';
-import 'constant.dart';
 
 class CreateUser extends StatefulWidget {
   final UserEntity? user;

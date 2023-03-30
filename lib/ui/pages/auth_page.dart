@@ -1,8 +1,7 @@
+import 'package:caflutterdemo/ui/pages/home.dart';
 import 'package:caflutterdemo/ui/pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -13,6 +12,7 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   Future<FirebaseApp> _initializeFirebase() async {
+    print("init firebase");
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     return firebaseApp;
   }
@@ -27,11 +27,14 @@ class _AuthPageState extends State<AuthPage> {
         future: _initializeFirebase(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
+            print("connected");
+            // return HomeScreen();
             return LoginPage();
           }
           return const Center(child: CircularProgressIndicator());
         },
       ),
+      // body: LoginPage()
     );
   }
 }

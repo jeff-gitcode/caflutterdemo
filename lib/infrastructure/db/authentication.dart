@@ -3,12 +3,21 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Authentication {
-  static Future<User?> register({
+import '../../application/interface/spi/iauth_repository.dart';
+
+class Authentication implements IAuthRepository {
+  // final FirebaseAuth auth;
+
+  // Authentication({required this.auth}) {
+  Authentication() {
+    print("init auth");
+  }
+
+  @override
+  Future<User?> register({
     required String name,
     required String email,
     required String password,
-    required BuildContext context,
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
@@ -19,8 +28,8 @@ class Authentication {
       );
       user = userCredential.user;
       print("created user");
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AuthPage()));
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => AuthPage()));
       // await user!.updateProfile(displayName: name);
       // await user.reload();
       // user = auth.currentUser;
@@ -36,10 +45,10 @@ class Authentication {
     return user;
   }
 
-  static Future<User?> signIn({
+  @override
+  Future<User?> signIn({
     required String email,
     required String password,
-    required BuildContext context,
   }) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
@@ -61,7 +70,8 @@ class Authentication {
     return user;
   }
 
-  static Future<User?> refreshUser(User user) async {
+  @override
+  Future<User?> refreshUser(User user) async {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     await user.reload();
