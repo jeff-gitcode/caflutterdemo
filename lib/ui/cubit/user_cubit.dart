@@ -16,6 +16,8 @@ class UserCubit extends Cubit<UserState> {
 
   void loadUsers() async {
     try {
+      print('loadUsers');
+
       if (state is UserLoadingState) return;
 
       final currentState = state;
@@ -97,5 +99,9 @@ class UserCubit extends Cubit<UserState> {
       print(e);
       emit(UserCreateFailureState());
     }
+  }
+
+  void resetState() async {
+    emit(InitialUserState());
   }
 }

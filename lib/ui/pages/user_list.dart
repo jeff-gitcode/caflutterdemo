@@ -1,3 +1,4 @@
+import 'package:caflutterdemo/ui/cubit/auth_state.dart';
 import 'package:caflutterdemo/ui/cubit/user_cubit.dart';
 import 'package:caflutterdemo/ui/pages/user_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,111 +18,51 @@ class _UserListState extends State<UserList> {
 
   @override
   void initState() {
-    super.initState();
-    userCubit = GetIt.instance<UserCubit>();
+    userCubit = context.read<UserCubit>();
     userCubit.loadUsers();
+    // userCubit = GetIt.instance<UserCubit>();
+    // userCubit.loadUsers();
     print('initState');
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<UserCubit>(
-        create: (context) => userCubit,
-        child: BlocListener<UserCubit, UserState>(
-          listener: (context, state) {
-            if (state is UserLoadFailureState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Error"),
-                ),
-              );
-            }
+    return BlocConsumer<UserCubit, UserState>(
+      // return BlocProvider<UserCubit>(
+      // create: (context) => userCubit,
+      // child: BlocListener<UserCubit, UserState>(
+      listener: (context, state) {
+        if (state is UserLoadFailureState) {
+          print(state);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Error"),
+            ),
+          );
+        }
+      },
+      // child: BlocBuilder<UserCubit, UserState>(
+      builder: (context, state) {
+        print(state);
+        if (state is UserLoadingState) {
+          print("UserLoadingState==");
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        return ListView.builder(
+          itemCount: state.users.length,
+          itemBuilder: (context, index) {
+            return UserCard(
+              user: state.users[index],
+            );
           },
-          child: BlocBuilder<UserCubit, UserState>(
-            builder: (context, state) {
-              print(state);
-              if (state is UserLoadingState) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (state is UserLoadSuccessState ||
-                  state is UserSubmitSuccessState) {
-                return ListView.builder(
-                  itemCount: state.users.length,
-                  itemBuilder: (context, index) {
-                    return UserCard(
-                      user: state.users[index],
-                      userCubit: userCubit,
-                    );
-                  },
-                );
-              } else {
-                return const Center(
-                  child: Text('No data'),
-                );
-              }
-            },
-          ),
-        )
-        // builder: (context, state) {
-        //   if (state is UserLoadingState) {
-        //     return const Center(
-        //       child: CircularProgressIndicator(),
-        //     );
-        //   } else if (state is UserLoadSuccessState) {
-        //     return ListView.builder(
-        //       itemCount: state.users.length,
-        //       itemBuilder: (context, index) {
-        //         return UserCard(user: state.users[index]);
-        //       },
-        //     );
-        //   } else {
-        //     return const Center(
-        //       child: Text('No data'),
-        //     );
-        //   }
-        // },
         );
-    // return BlocBuilder<UserCubit, UserState>(
-    //   builder: (context, state) {
-    //     if (state is UserLoadingState) {
-    //       return const Center(
-    //         child: CircularProgressIndicator(),
-    //       );
-    //     } else if (state is UserLoadSuccessState) {
-    //       return ListView.builder(
-    //         itemCount: state.users.length,
-    //         itemBuilder: (context, index) {
-    //           return UserCard(user: state.users[index]);
-    //         },
-    //       );
-    //     } else {
-    //       return const Center(
-    //         child: Text('No data'),
-    //       );
-    //     }
-    //   },
-    // );
+      },
+      // ),
+      // ),
+    );
   }
 }
-
-// class UserList extends StatefulWidget {
-//   @override
-//   _UserListState createState() => _UserListState();
-// }
-
-// class _UserListState extends State<UserList> {
-//   UserBloc _userBloc;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _userBloc = UserBloc(userUseCase: null);
-//     _userBloc.add(LoadUsersEvent());
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }

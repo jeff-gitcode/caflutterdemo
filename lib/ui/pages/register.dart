@@ -16,90 +16,94 @@ class _RegisterPageState extends State<RegisterPage> {
   final nameText = TextEditingController();
   final emailText = TextEditingController();
   final passwordText = TextEditingController();
-
-  late final AuthCubit authCubit;
+  late AuthCubit authCubit;
 
   @override
   void initState() {
+    authCubit = context.read<AuthCubit>();
     super.initState();
-    authCubit = GetIt.instance<AuthCubit>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthCubit>(
-        create: (context) => authCubit,
-        child: BlocListener<AuthCubit, AuthState>(listener: (context, state) {
-          if (state is AuthSuccessState) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => HomeScreen()));
-          }
-        }, child: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
-            if (state is AuthLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return Scaffold(
-                  appBar: AppBar(
-                    title: const Text('Register'),
-                  ),
-                  body: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Text('Register',
-                            style: Theme.of(context).textTheme.headline4),
-                        TextFormField(
-                          controller: nameText,
-                          decoration: const InputDecoration(
-                            hintText: 'Name',
-                            prefixIcon: Icon(Icons.person, color: Colors.blue),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: emailText,
-                          decoration: const InputDecoration(
-                            hintText: 'Email',
-                            prefixIcon: Icon(Icons.mail, color: Colors.blue),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: passwordText,
-                          decoration: const InputDecoration(
-                            hintText: 'Password',
-                            prefixIcon: Icon(Icons.lock, color: Colors.blue),
-                          ),
-                        ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                  child: ElevatedButton(
-                                      onPressed: () async {
-                                        await authCubit.register(
-                                            name: nameText.text,
-                                            email: emailText.text,
-                                            password: passwordText.text);
-
-                                        if (state.user != null) {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      AuthPage()));
-                                        }
-                                      },
-                                      child: const Text('Register',
-                                          style:
-                                              TextStyle(color: Colors.white))))
-                            ])
-                      ],
+    return BlocConsumer<AuthCubit, AuthState>(
+      // return BlocProvider<AuthCubit>(
+      // create: (context) => authCubit,
+      // child: BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccessState) {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        }
+      },
+      // child: BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        if (state is AuthLoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return Scaffold(
+              appBar: AppBar(
+                title: const Text('Register'),
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text('Register',
+                        style: Theme.of(context).textTheme.headline4),
+                    TextFormField(
+                      controller: nameText,
+                      decoration: const InputDecoration(
+                        hintText: 'Name',
+                        prefixIcon: Icon(Icons.person, color: Colors.blue),
+                      ),
                     ),
-                  ));
-            }
-          },
-        )));
+                    TextFormField(
+                      controller: emailText,
+                      decoration: const InputDecoration(
+                        hintText: 'Email',
+                        prefixIcon: Icon(Icons.mail, color: Colors.blue),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: passwordText,
+                      decoration: const InputDecoration(
+                        hintText: 'Password',
+                        prefixIcon: Icon(Icons.lock, color: Colors.blue),
+                      ),
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                              child: ElevatedButton(
+                                  onPressed: () async {
+                                    authCubit.register(
+                                        name: nameText.text,
+                                        email: emailText.text,
+                                        password: passwordText.text);
+
+                                    // if (state.user != null) {
+                                    //   print("user is not null");
+                                    //   print(state.user);
+
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                HomeScreen()));
+                                    // }
+                                  },
+                                  child: const Text('Register',
+                                      style: TextStyle(color: Colors.white))))
+                        ])
+                  ],
+                ),
+              ));
+        }
+      },
+    );
   }
 }

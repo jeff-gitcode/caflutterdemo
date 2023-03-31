@@ -38,111 +38,122 @@ class _LoginPageState extends State<LoginPage> {
 
   final passwordText = TextEditingController();
 
-  late final AuthCubit authCubit;
+  late AuthCubit authCubit;
 
   @override
   void initState() {
+    authCubit = context.read<AuthCubit>();
     super.initState();
-    authCubit = GetIt.instance<AuthCubit>();
+    // authCubit = GetIt.instance<AuthCubit>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthCubit>(
-        create: (context) => authCubit,
-        child: BlocListener<AuthCubit, AuthState>(listener: (context, state) {
-          print(state);
+    return BlocConsumer<AuthCubit, AuthState>(
+      // return BlocProvider<AuthCubit>(
+      // create: (context) => authCubit,
+      //   child: BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        print(state);
+        if (state is AuthSuccessState) {
+          print("AuthSuccessState==");
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        }
+      },
+      // child: BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        print("steps2");
+        print(state);
+        if (state is AuthLoadingState) {
+          print("AuthLoadingState==");
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
           if (state is AuthSuccessState) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => HomeScreen()));
-          }
-        }, child: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
+            print("AuthSuccessState==");
+            return Text('login page ');
+          } else {
             print(state);
-            if (state is AuthLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              print("login page ");
-              return Column(children: [
-                // Image.asset(
-                //   '../../../assets/images/smile.jpg',
-                //   fit: BoxFit.fitWidth,
-                //   width: 200,
-                //   height: 200,
-                //   color: Colors.white,
-                // ),
-                Text('Login', style: Theme.of(context).textTheme.headline4),
-                TextFormField(
-                  controller: emailText,
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                    prefixIcon: Icon(Icons.email, color: Colors.blue),
-                  ),
+            print("login page ");
+            return Column(children: [
+              // Image.asset(
+              //   '../../../assets/images/smile.jpg',
+              //   fit: BoxFit.fitWidth,
+              //   width: 200,
+              //   height: 200,
+              //   color: Colors.white,
+              // ),
+              Text('Login', style: Theme.of(context).textTheme.headline4),
+              TextFormField(
+                controller: emailText,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.email, color: Colors.blue),
                 ),
-                TextFormField(
-                  controller: passwordText,
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    prefixIcon: Icon(Icons.lock, color: Colors.blue),
-                  ),
+              ),
+              TextFormField(
+                controller: passwordText,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  prefixIcon: Icon(Icons.lock, color: Colors.blue),
                 ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                          child: ElevatedButton(
-                              onPressed: () async {
-                                print(emailText.text);
-                                print(passwordText.text);
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          print(emailText.text);
+                          print(passwordText.text);
 
-                                // User? user = await Authentication.signIn(
-                                //     email: emailText.text,
-                                //     password: passwordText.text,
-                                //     context: context);
+                          // User? user = await Authentication.signIn(
+                          //     email: emailText.text,
+                          //     password: passwordText.text,
+                          //     context: context);
 
-                                await authCubit.login(
-                                    email: emailText.text,
-                                    password: passwordText.text);
+                          authCubit.login(
+                              email: emailText.text,
+                              password: passwordText.text);
 
-                                // print(user);
-                                // if (user != null) {
-                                //   Navigator.push(
-                                //       context,
-                                //       MaterialPageRoute(
-                                //           builder: (context) => HomeScreen()));
-                                // }
-                              },
-                              child: Text('Sign In',
-                                  style: TextStyle(color: Colors.white)))),
-                      Expanded(
-                          child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => RegisterPage()));
+                          // print(user);
+                          // if (user != null) {
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) => HomeScreen()));
+                          // }
+                        },
+                        child: Text('Sign In',
+                            style: TextStyle(color: Colors.white)))),
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegisterPage()));
 
-                                // Navigator.of(context).push(
-                                //   MaterialPageRoute(
-                                //     builder: (context) => RegisterPage(),
-                                //   ),
-                                // );
-                              },
-                              // onPressed: () async {
-                              //   await Authentication.register(
-                              //     name: '',
-                              //     email: '',
-                              //     password: '',
-                              //   );
-                              // },
-                              child: Text('Register',
-                                  style: TextStyle(color: Colors.white))))
-                    ])
-              ]);
-            }
-          },
-        )));
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //     builder: (context) => RegisterPage(),
+                          //   ),
+                          // );
+                        },
+                        // onPressed: () async {
+                        //   await Authentication.register(
+                        //     name: '',
+                        //     email: '',
+                        //     password: '',
+                        //   );
+                        // },
+                        child: Text('Register',
+                            style: TextStyle(color: Colors.white))))
+              ])
+            ]);
+          }
+        }
+      },
+    );
   }
 }

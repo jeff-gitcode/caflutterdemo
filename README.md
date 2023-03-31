@@ -72,6 +72,9 @@ $ flutter pub add json_to_form
 $ flutter pub add firebase_core
 $ flutter pub add firebase_auth
 
+# upgrade
+$ flutter pub upgrade
+
 # flutter build
 $ flutter build apk
 
@@ -101,6 +104,8 @@ $ flutter run --no-sound-null-safety
 ## Setup for firebase
 
 default login email: jefftest@fluttertest.com, password: 12345678
+
+\*select device from vscode before connect to firebase
 
 ![alt text](./doc/firebase.jpg)
 

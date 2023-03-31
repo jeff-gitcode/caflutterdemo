@@ -71,13 +71,24 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'CA Flutter Demo',
-        // debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        //     home: const HomeScreen());
-        home: AuthPage());
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthCubit>(
+            create: (context) => GetIt.instance<AuthCubit>(),
+          ),
+          BlocProvider<UserCubit>(
+            create: (context) => GetIt.instance<UserCubit>(),
+          ),
+        ],
+        child: 
+        MaterialApp(
+          title: 'CA Flutter Demo',
+          // debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          //     home: const HomeScreen());
+          home: AuthPage(),
+        ));
   }
 }
