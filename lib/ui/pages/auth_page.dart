@@ -20,21 +20,28 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('CA Flutter Demo'),
-      ),
-      body: FutureBuilder(
-        future: _initializeFirebase(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            print("connected");
-            // return HomeScreen();
-            return LoginPage();
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
-      // body: LoginPage()
-    );
+        appBar: AppBar(
+          title: Text('CA Flutter Demo'),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/bg1.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: FutureBuilder(
+            future: _initializeFirebase(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                print("connected");
+                // return HomeScreen();
+                return LoginPage();
+              }
+              return const Center(child: CircularProgressIndicator());
+            },
+          ),
+          // body: LoginPage()
+        ));
   }
 }

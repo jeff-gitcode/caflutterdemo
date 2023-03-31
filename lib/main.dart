@@ -80,15 +80,20 @@ class _MyAppState extends State<MyApp> {
             create: (context) => GetIt.instance<UserCubit>(),
           ),
         ],
-        child: 
-        MaterialApp(
-          title: 'CA Flutter Demo',
-          // debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          //     home: const HomeScreen());
-          home: AuthPage(),
-        ));
+        child: MaterialApp(
+            title: 'CA Flutter Demo',
+            // debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            //     home: const HomeScreen());
+            home: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/bg1.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: AuthPage())));
   }
 }

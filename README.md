@@ -105,15 +105,21 @@ $ flutter run --no-sound-null-safety
 
 default login email: jefftest@fluttertest.com, password: 12345678
 
-\*select device from vscode before connect to firebase
+## select device from vscode before connect to firebase
 
 ![alt text](./doc/firebase.jpg)
 
 ![alt text](./doc/ca-flutter-auth.gif)
 
+Youtube guide for setting up firebase
+
 https://www.youtube.com/watch?v=aKgEEnVhU1I
 
 https://www.youtube.com/watch?v=GvIoBgmNgQw
+
+## change background
+
+![alt text](./doc/bg1.jpg)
 
 ## Getting Started
 
