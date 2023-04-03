@@ -12,15 +12,15 @@ class UserRepository implements IUserRepository {
     return await userProvider.getUserById(id);
   }
 
-  Future<UserEntity> createUser(UserEntity user) async {
+  Future<UserEntity> createUser({required UserEntity user}) async {
     return await userProvider.createUser(user);
   }
 
-  Future<UserEntity> updateUser(UserEntity user) async {
+  Future<UserEntity> updateUser({required UserEntity user}) async {
     return await userProvider.updateUser(user);
   }
 
-  Future<void> deleteUser(String id) async {
+  Future<void> deleteUser({required String id}) async {
     await userProvider.deleteUser(id);
   }
 

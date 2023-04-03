@@ -45,7 +45,7 @@ class UserCubit extends Cubit<UserState> {
 
       emit(UserDeleteLoadingState(id: id) as UserState);
 
-      await userUseCase.deleteUser(id);
+      await userUseCase.deleteUser(id: id);
 
       final users = currentState.users;
       users.removeWhere((element) => element.id == id);
@@ -64,7 +64,7 @@ class UserCubit extends Cubit<UserState> {
 
       emit(UserUpdateLoadingState(user: user) as UserState);
 
-      var updateUser = await userUseCase.updateUser(user);
+      var updateUser = await userUseCase.updateUser(user: user);
 
       print(currentState);
 
@@ -89,7 +89,7 @@ class UserCubit extends Cubit<UserState> {
 
       emit(UserCreateLoadingState(user: user) as UserState);
 
-      var newUser = await userUseCase.createUser(user);
+      var newUser = await userUseCase.createUser(user: user);
 
       final users = currentState.users;
       users.add(newUser);

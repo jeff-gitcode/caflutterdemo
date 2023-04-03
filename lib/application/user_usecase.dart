@@ -14,9 +14,9 @@ class UserUseCase implements IUserUseCase {
   }
 
   @override
-  Future<void> deleteUser(String id) async {
+  Future<void> deleteUser({required String id}) async {
     // TODO: implement deleteUser
-    return await userRepository.deleteUser(id);
+    return await userRepository.deleteUser(id: id);
   }
 
   @override
@@ -26,14 +26,14 @@ class UserUseCase implements IUserUseCase {
   }
 
   @override
-  Future<UserEntity> createUser(UserEntity user) async {
+  Future<UserEntity> createUser({required UserEntity user}) async {
     // TODO: implement insertUser
-    return await userRepository.createUser(user);
+    return await userRepository.createUser(user: user);
   }
 
   @override
-  Future<UserEntity> updateUser(UserEntity user) async {
+  Future<UserEntity> updateUser({required UserEntity user}) async {
     // TODO: implement updateUser
-    return await userRepository.updateUser(user);
+    return await userRepository.updateUser(user: user);
   }
 }

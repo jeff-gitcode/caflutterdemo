@@ -19,29 +19,30 @@ import 'application/interface/api/iauth_usecase.dart';
 import 'application/interface/api/iuser_usecase.dart';
 import 'application/interface/spi/iuser_repository.dart';
 import 'application/user_usecase.dart';
+import 'di.dart';
 import 'infrastructure/db/authentication.dart';
 import 'infrastructure/db/user_repository.dart';
 
-final sl = GetIt.instance;
+// final sl = GetIt.instance;
 
-Future<void> init() async {
-  sl.registerLazySingleton(() => UserCubit(userUseCase: sl()));
+// Future<void> init() async {
+//   sl.registerLazySingleton(() => UserCubit(userUseCase: sl()));
 
-  sl.registerLazySingleton(() => Client());
-  sl.registerLazySingleton(() => UserProvider(httpClient: sl()));
+//   sl.registerLazySingleton(() => Client());
+//   sl.registerLazySingleton(() => UserProvider(httpClient: sl()));
 
-  sl.registerLazySingleton<IAuthRepository>(
-      () => Authentication(auth: FirebaseAuth.instance));
-  sl.registerLazySingleton<IUserRepository>(
-      () => UserRepository(userProvider: sl()));
+//   sl.registerLazySingleton<IAuthRepository>(
+//       () => Authentication(auth: FirebaseAuth.instance));
+//   sl.registerLazySingleton<IUserRepository>(
+//       () => UserRepository(userProvider: sl()));
 
-  sl.registerLazySingleton<IAuthUseCase>(
-      () => AuthUseCase(authRepository: sl()));
-  sl.registerLazySingleton<IUserUseCase>(
-      () => UserUseCase(userRepository: sl()));
+//   sl.registerLazySingleton<IAuthUseCase>(
+//       () => AuthUseCase(authRepository: sl()));
+//   sl.registerLazySingleton<IUserUseCase>(
+//       () => UserUseCase(userRepository: sl()));
 
-  sl.registerLazySingleton(() => AuthCubit(authUseCase: sl()));
-}
+//   sl.registerLazySingleton(() => AuthCubit(authUseCase: sl()));
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +52,8 @@ void main() async {
   // );
   // await Firebase.initializeApp();
   print("init main");
-  await init();
+  // await init();
+  DependencyInjection.register();
 
   runApp(MyApp());
 }

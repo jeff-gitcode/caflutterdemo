@@ -16,7 +16,7 @@ https://www.youtube.com/watch?v=03zuAxPjVDI
 - [x] Android Studio
 - [x] json to form (json schema)
 - [x] http / dio
-- [ ] Unit Test [TODO]
+- [x] Unit Test [TODO]
 - [ ] Offline first [TODO]
 - [x] Authentication
 - [x] Firebase DB
@@ -120,6 +120,19 @@ https://www.youtube.com/watch?v=GvIoBgmNgQw
 ## change background
 
 ![alt text](./doc/bg1.jpg)
+
+## Unit Test
+
+![alt text](./doc/ca-flutter-test.gif)
+
+```javascript
+# flutter_test, build_runner, mockito
+
+# GenerateMocks
+
+# build_runner
+$ dart run build_runner build
+```
 
 ## Getting Started
 
