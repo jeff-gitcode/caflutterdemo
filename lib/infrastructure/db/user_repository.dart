@@ -4,7 +4,7 @@ import 'package:caflutterdemo/infrastructure/db/user_provider.dart';
 import '../../application/interface/spi/iuser_repository.dart';
 
 class UserRepository implements IUserRepository {
-  final UserProvider userProvider;
+  final IUserProvider userProvider;
 
   UserRepository({required this.userProvider});
 

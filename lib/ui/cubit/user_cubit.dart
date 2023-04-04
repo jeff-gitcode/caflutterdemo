@@ -14,15 +14,14 @@ class UserCubit extends Cubit<UserState> {
     print('UserCubit constructor');
   }
 
-  void loadUsers() async {
+  Future<void> loadUsers() async {
     try {
       print('loadUsers');
 
-      if (state is UserLoadingState) return;
+      // if (state is UserLoadingState) return;
 
       final currentState = state;
-
-      emit(UserLoadingState() as UserState);
+      emit(UserLoadingState());
 
       final result = await userUseCase.getUsers();
 
@@ -37,13 +36,13 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  void deleteUser({required String id}) async {
+  Future<void> deleteUser({required String id}) async {
     try {
-      if (state is UserDeleteLoadingState) return;
+      // if (state is UserDeleteLoadingState) return;
 
       final currentState = state;
 
-      emit(UserDeleteLoadingState(id: id) as UserState);
+      emit(UserDeleteLoadingState(id: id));
 
       await userUseCase.deleteUser(id: id);
 
@@ -56,13 +55,12 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  void updateUser({required UserEntity user}) async {
+  Future<void> updateUser({required UserEntity user}) async {
     try {
-      if (state is UserUpdateLoadingState) return;
-
+      // if (state is UserUpdateLoadingState) return;
       final currentState = state;
 
-      emit(UserUpdateLoadingState(user: user) as UserState);
+      emit(UserUpdateLoadingState(user: user));
 
       var updateUser = await userUseCase.updateUser(user: user);
 
@@ -81,13 +79,12 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  void createUser({required UserEntity user}) async {
+  Future<void> createUser({required UserEntity user}) async {
     try {
-      if (state is UserCreateLoadingState) return;
-
+      // if (state is UserCreateLoadingState) return;
       final currentState = state;
 
-      emit(UserCreateLoadingState(user: user) as UserState);
+      emit(UserCreateLoadingState(user: user));
 
       var newUser = await userUseCase.createUser(user: user);
 
@@ -99,9 +96,5 @@ class UserCubit extends Cubit<UserState> {
       print(e);
       emit(UserCreateFailureState());
     }
-  }
-
-  void resetState() async {
-    emit(InitialUserState());
   }
 }

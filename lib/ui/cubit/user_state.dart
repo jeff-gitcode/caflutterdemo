@@ -15,10 +15,7 @@ class InitialUserState extends UserState {
   List<Object> get props => [];
 }
 
-class UserLoadingState extends UserState {
-  @override
-  List<Object> get props => [];
-}
+class UserLoadingState extends UserState {}
 
 class UserLoadSuccessState extends UserState {
   final List<UserEntity> users;

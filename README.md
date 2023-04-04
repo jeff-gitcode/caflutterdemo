@@ -132,6 +132,9 @@ https://www.youtube.com/watch?v=GvIoBgmNgQw
 
 # build_runner
 $ dart run build_runner build
+
+# test coverage
+$ flutter test --coverage
 ```
 
 ## Getting Started

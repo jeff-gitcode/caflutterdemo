@@ -24,8 +24,10 @@ class DependencyInjection {
     GetIt.instance.registerLazySingleton(() => UserCubit(userUseCase: getIt()));
 
     GetIt.instance.registerLazySingleton(() => Client());
-    GetIt.instance
-        .registerLazySingleton(() => UserProvider(httpClient: getIt()));
+    // GetIt.instance
+    //     .registerLazySingleton(() => UserProvider(httpClient: getIt()));
+    GetIt.instance.registerLazySingleton<IUserProvider>(
+        () => UserProvider(httpClient: getIt()));
 
     GetIt.instance.registerLazySingleton<IAuthRepository>(
         () => Authentication(auth: FirebaseAuth.instance));

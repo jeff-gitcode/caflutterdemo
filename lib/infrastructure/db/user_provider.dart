@@ -3,7 +3,15 @@ import 'package:http/http.dart';
 
 import '../../domain/user_entity.dart';
 
-class UserProvider {
+abstract class IUserProvider {
+  Future<UserEntity> getUserById(String id);
+  Future<List<UserEntity>> getUsers();
+  Future<UserEntity> createUser(UserEntity user);
+  Future<UserEntity> updateUser(UserEntity user);
+  Future<void> deleteUser(String id);
+}
+
+class UserProvider implements IUserProvider {
   final Client httpClient;
 
   UserProvider({required this.httpClient});
