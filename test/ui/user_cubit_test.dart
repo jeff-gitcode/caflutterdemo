@@ -24,7 +24,7 @@ void main() {
       website: "website");
   final Exception tException = Exception('Failed!');
 
-  setUpAll(() {
+  setUp(() {
     userUseCase = MockIUserUseCase();
     userCubit = UserCubit(userUseCase: userUseCase);
   });
@@ -41,6 +41,7 @@ void main() {
     setUp: () =>
         when(() => userUseCase.getUsers()).thenAnswer((_) async => [user]),
     build: () => userCubit,
+    seed: () => UserLoadSuccessState(users: [user]),
     act: (cubit) => cubit.loadUsers(),
     // wait: const Duration(milliseconds: 5000),
     expect: () => <UserState>[
@@ -55,6 +56,7 @@ void main() {
   blocTest<UserCubit, UserState>(
     'should emit [UserLoadingState, UserLoadFailureState] when loadUsers failed',
     setUp: () => when(() => userUseCase.getUsers()).thenThrow(tException),
+    seed: () => UserLoadSuccessState(users: [user]),
     build: () => userCubit,
     act: (cubit) => cubit.loadUsers(),
     // wait: const Duration(milliseconds: 5000),

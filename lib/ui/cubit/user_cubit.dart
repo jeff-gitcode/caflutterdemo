@@ -19,8 +19,6 @@ class UserCubit extends Cubit<UserState> {
       print('loadUsers');
 
       // if (state is UserLoadingState) return;
-
-      final currentState = state;
       emit(UserLoadingState());
 
       final result = await userUseCase.getUsers();
