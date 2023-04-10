@@ -21,7 +21,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('CA Flutter Demo'),
+          title: Text('CA Flutter Auth'),
         ),
         body: Container(
           decoration: BoxDecoration(

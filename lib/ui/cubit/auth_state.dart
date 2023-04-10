@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 abstract class AuthState extends Equatable {
   // final User? user;
 
-  const AuthState();
+  AuthState();
 
   @override
   List<Object> get props => [];
@@ -17,7 +17,7 @@ class AuthLoadingState extends AuthState {}
 class AuthSuccessState extends AuthState {
   final User user;
 
-  const AuthSuccessState({required this.user});
+  AuthSuccessState({required this.user});
 
   @override
   List<Object> get props => [user];

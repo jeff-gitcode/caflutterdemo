@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
         } else {
           if (state is AuthSuccessState) {
             print("AuthSuccessState==");
-            return Text('login page ');
+            return Text('login page');
           } else {
             print(state);
             print("login page ");
