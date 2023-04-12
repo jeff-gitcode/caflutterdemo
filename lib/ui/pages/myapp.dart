@@ -14,21 +14,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 
-class MyApp extends StatefulWidget {
+import '../../di.dart';
+
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   // Future<FirebaseApp> _initializeFirebase() async {
-  //   FirebaseApp firebaseApp = await Firebase.initializeApp();
-  //   return firebaseApp;
-  // }
-
   @override
   Widget build(BuildContext context) {
+    DependencyInjection.register();
+
     return MultiBlocProvider(
         providers: [
           BlocProvider<AuthCubit>(

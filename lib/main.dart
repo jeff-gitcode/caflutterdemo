@@ -20,7 +20,7 @@ import 'application/interface/api/iauth_usecase.dart';
 import 'application/interface/api/iuser_usecase.dart';
 import 'application/interface/spi/iuser_repository.dart';
 import 'application/user_usecase.dart';
-import 'di.dart';
+
 import 'infrastructure/db/authentication.dart';
 import 'infrastructure/db/user_repository.dart';
 
@@ -54,7 +54,6 @@ void main() async {
   // await Firebase.initializeApp();
   print("init main");
   // await init();
-  DependencyInjection.register();
 
   runApp(MyApp());
 }

@@ -6,6 +6,7 @@ import 'package:caflutterdemo/ui/cubit/auth_state.dart';
 import 'package:caflutterdemo/ui/pages/home.dart';
 import 'package:caflutterdemo/ui/pages/login.dart';
 import 'package:caflutterdemo/ui/pages/myapp.dart';
+import 'package:caflutterdemo/ui/pages/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter/material.dart';
@@ -35,28 +36,41 @@ void main() {
     providerData: [],
     // metadata: MockUserMetadata(creationTime: DateTime.now()),
   );
+  MockNavigatorObserver mockNavigatorObserver;
+
+  tearDown(() {
+    // mockAuthCubit.clear(),
+    // mockNavigatorObserver.clear(),
+    // mockUserCubit.close(),
+  });
 
   setUpAll(() {
     registerFallbackValue(MockAuthState());
+    mockNavigatorObserver = MockNavigatorObserver();
   });
 
-  setUp(() {});
+  setUp(() {
+    when(() => mockAuthCubit.login(email: 'email', password: 'password'))
+        .thenAnswer((_) async => user);
+  });
 
   testWidgets('Should present Login', (WidgetTester tester) async {
-    final mockObserver = MockNavigatorObserver();
+    // final mockObserver = MockNavigatorObserver();
     when(() => mockAuthCubit.state).thenReturn(AuthSuccessState(user: user));
 
     await tester.pumpWidget(Builder(builder: (BuildContext context) {
       return MaterialApp(
+          // navigatorObservers: [mockNavigatorObserver],
           title: "test",
           theme: null,
-          home: Container(
+          home: Scaffold(
+              body: Container(
             decoration: null,
             child: BlocProvider<AuthCubit>.value(
               value: mockAuthCubit,
               child: LoginPage(),
             ),
-          ));
+          )));
     }));
     expect(find.byType(LoginPage), findsOneWidget);
 
@@ -72,18 +86,77 @@ void main() {
       return MaterialApp(
           title: "test",
           theme: null,
-          home: Container(
+          home: Scaffold(
+              body: Container(
             decoration: null,
             child: BlocProvider<AuthCubit>.value(
               value: mockAuthCubit,
               child: LoginPage(),
             ),
-          ));
+          )));
     }));
     expect(find.byType(LoginPage), findsOneWidget);
 
     // verify(mockObserver.didPush(any(), any()));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('Should show login form when click on login',
+      (WidgetTester tester) async {
+    when(() => mockAuthCubit.state).thenReturn(AuthInitial());
+
+    await tester.pumpWidget(Builder(builder: (BuildContext context) {
+      return MaterialApp(
+          home: Scaffold(
+              body: Container(
+        decoration: null,
+        child: BlocProvider<AuthCubit>.value(
+          value: mockAuthCubit,
+          child: LoginPage(),
+        ),
+      )));
+    }));
+    expect(find.byType(LoginPage), findsOneWidget);
+    expect(find.text('Login'), findsOneWidget);
+    await tester.enterText(find.byType(TextFormField).at(0), 'email');
+    await tester.enterText(find.byType(TextFormField).at(1), 'password');
+    await tester.tap(find.byType(ElevatedButton).first);
+    await tester.pump();
+
+    verify(() => mockAuthCubit.login(email: 'email', password: 'password'))
+        .called(1);
+    // expect(find.text('Password'), findsOneWidget);
+  });
+
+  testWidgets('Should show register form when click on register',
+      (WidgetTester tester) async {
+    when(() => mockAuthCubit.state).thenReturn(AuthInitial());
+
+    await tester.pumpWidget(Builder(builder: (BuildContext context) {
+      return MaterialApp(
+          home: Scaffold(
+              body: Container(
+        decoration: null,
+        child: BlocProvider<AuthCubit>.value(
+          value: mockAuthCubit,
+          child: LoginPage(),
+        ),
+      )));
+    }));
+    expect(find.byType(LoginPage), findsOneWidget);
+    expect(find.text('Login'), findsOneWidget);
+
+    final button = find.widgetWithText(ElevatedButton, 'Register');
+    // await tester.ensureVisible(button);
+    await tester.tap(button);
+    // await tester.pump();
+
+    // expect(find.byType(RegisterPage), findsOneWidget);
+    // expect(find.text('Register'), findsOneWidget);
+    // await tester.tap(find.byType(ElevatedButton).at(1));
+    // await tester.pump();
+
+    // expect(find.byType(RegisterPage), findsOneWidget);
   });
 }

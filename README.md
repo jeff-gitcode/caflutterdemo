@@ -137,6 +137,12 @@ $ dart run build_runner build
 $ flutter test --coverage
 ```
 
+## Integration Test
+
+```javascript
+# integration_test
+
+```
 ## Getting Started
 
 This project is a starting point for a Flutter application.
