@@ -1,25 +1,35 @@
-import 'package:caflutterdemo/ui/pages/myapp.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+// import 'package:caflutterdemo/firebase_options.dart';
+// import 'package:caflutterdemo/ui/pages/myapp.dart';
+// import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
+
+import 'package:caflutterdemo/main.dart' as app;
 
 void main() async {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('end-to-end test', () {
-    Widget createWidgetForTesting({Widget? child}) {
-      return MaterialApp(home: child);
-    }
+    // Widget createWidgetForTesting({Widget? child}) {
+    //   return MaterialApp(home: child);
+    // }
 
     testWidgets('should launch app', (tester) async {
-      // app.main();
-      WidgetsFlutterBinding.ensureInitialized();
-      await Firebase.initializeApp();
+      final FlutterExceptionHandler? originalOnError = FlutterError.onError;
+      app.main();
+      await tester.pumpAndSettle();
 
-      // Build our app and trigger a frame.
-      Widget w = createWidgetForTesting(child: const MyApp());
-      await tester.pumpWidget(w);
+      // expect(find.text('Login'), findsOneWidget);
+
+      FlutterError.onError = originalOnError;
+      // WidgetsFlutterBinding.ensureInitialized();
+      // await Firebase.initializeApp(
+      //   options: DefaultFirebaseOptions.currentPlatform,
+      // );
+
+      // // Build our app and trigger a frame.
+      // Widget w = createWidgetForTesting(child: const MyApp());
+      // await tester.pumpWidget(w);
     });
   });
 }

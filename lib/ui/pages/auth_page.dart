@@ -3,6 +3,8 @@ import 'package:caflutterdemo/ui/pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import '../../firebase_options.dart';
+
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
 
@@ -13,7 +15,9 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   Future<FirebaseApp> _initializeFirebase() async {
     print("init firebase");
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    FirebaseApp firebaseApp = await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     return firebaseApp;
   }
 

@@ -29,6 +29,13 @@
             {
               "client_id": "345183634297-m1g5c5aqt7pbu0c9dm52nc9jeog35klg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "345183634297-muc5t2qp7rq1sp9n2rpkcqe6gqjvr89d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.caflutterdemo"
+              }
             }
           ]
         }

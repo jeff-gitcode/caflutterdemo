@@ -1,3 +1,4 @@
+import 'package:caflutterdemo/firebase_options.dart';
 import 'package:caflutterdemo/ui/pages/auth_page.dart';
 import 'package:caflutterdemo/ui/pages/login.dart';
 import 'package:caflutterdemo/ui/pages/myapp.dart';
@@ -27,7 +28,9 @@ void main() {
   final mockUserCubit = MockUserCubit();
   // Initialize App
   setUpAll(() async {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   });
 
   testWidgets('Should present AuthPage', (WidgetTester tester) async {

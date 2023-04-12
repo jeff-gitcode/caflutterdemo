@@ -93,6 +93,8 @@ $ flutter run --no-sound-null-safety
 
 # emulator (android studio - float mode)
 
+# find issue
+$ flutter analyze
 ```
 
 ## Run with Emulator
@@ -143,6 +145,9 @@ $ flutter test --coverage
 # integration_test
 
 ```
+## Firebase CLI
+https://firebase.google.com/docs/cli#sign-in-test-cli
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
