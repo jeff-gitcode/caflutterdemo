@@ -25,11 +25,12 @@ import 'firebase_options.dart';
 //   sl.registerLazySingleton(() => AuthCubit(authUseCase: sl()));
 // }
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    // options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.web,
   );
 
   DependencyInjection.register();

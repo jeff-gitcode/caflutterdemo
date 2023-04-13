@@ -16,7 +16,7 @@ class _AuthPageState extends State<AuthPage> {
   Future<FirebaseApp> _initializeFirebase() async {
     print("init firebase");
     FirebaseApp firebaseApp = await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
+      options: DefaultFirebaseOptions.web,
     );
     return firebaseApp;
   }
