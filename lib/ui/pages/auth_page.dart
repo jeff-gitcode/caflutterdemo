@@ -13,13 +13,13 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  Future<FirebaseApp> _initializeFirebase() async {
-    print("init firebase");
-    FirebaseApp firebaseApp = await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.web,
-    );
-    return firebaseApp;
-  }
+  // Future<FirebaseApp> _initializeFirebase() async {
+  //   print("init firebase");
+  //   FirebaseApp firebaseApp = await Firebase.initializeApp(
+  //     options: DefaultFirebaseOptions.currentPlatform,
+  //   );
+  //   return firebaseApp;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +34,18 @@ class _AuthPageState extends State<AuthPage> {
               fit: BoxFit.cover,
             ),
           ),
-          child: FutureBuilder(
-            future: _initializeFirebase(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                print("connected");
-                // return HomeScreen();
-                return LoginPage();
-              }
-              return const Center(child: CircularProgressIndicator());
-            },
-          ),
+          // child: FutureBuilder(
+          //   future: _initializeFirebase(),
+          //   builder: (context, snapshot) {
+          //     if (snapshot.connectionState == ConnectionState.done) {
+          //       print("connected");
+          //       // return HomeScreen();
+          //       return LoginPage();
+          //     }
+          //     return const Center(child: CircularProgressIndicator());
+          //   },
+          // ),
+          child: LoginPage(),
           // body: LoginPage()
         ));
   }
